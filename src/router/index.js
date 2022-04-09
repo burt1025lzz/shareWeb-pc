@@ -7,13 +7,18 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Index',
-    component: Index
+    component: Index,
+    children: [
+      {path: '', name: 'Home', component: () => import('@/views/home/Home')},
+      {path: 'article', name: 'Article', component: () => import('@/views/article/Article')},
+      {path: 'video', name: 'Video', component: () => import('@/views/video/Video')}
+    ]
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history'
 })
 
 export default router
